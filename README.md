@@ -1,4 +1,4 @@
-Clustering Project
+**Clustering Project**
 
 How do we better estimate property value with less error?
 
