@@ -10,6 +10,17 @@ def nulls_by_col(df):
     cols_missing = pd.DataFrame({'num_rows_missing': num_missing, 'pct_rows_missing': pct_missing})
     return cols_missing
 
+
+# This function takes a df and returns another df
+# num_rows_of_interest let you pick how many rows do you want to filter
+def report_remain_nulls_by_col(df, num_rows_of_interest):
+    num_missing = df.isnull().sum()
+    rows = df.shape[0]
+    pct_missing = num_missing/rows
+    cols_missing = pd.DataFrame({'num_rows_missing': num_missing, 'pct_rows_missing': pct_missing})
+    cols_missing = cols_missing[cols_missing['num_rows_missing'] > num_rows_of_interest]
+    return cols_missing
+
 # This function takes in a dataframe and returns number of missing columns and percentage of missing columns
 
 def nulls_by_row(df):
