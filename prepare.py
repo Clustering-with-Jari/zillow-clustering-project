@@ -54,8 +54,8 @@ def remove_outliers_iqr(df, columns):
 # Split the data into train/test 
 
 def split_my_data(data):
-    df.fillna(np.nan, inplace=True)
-    df = df.dropna()
+    data.fillna(np.nan, inplace=True)
+    data = data.dropna()
     from sklearn.model_selection import train_test_split
     return train_test_split(data, train_size = 0.8, random_state = 123)
 
