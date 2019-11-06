@@ -51,12 +51,14 @@ def remove_outliers_iqr(df, columns):
         df = df[df[col] >= lb]
     return df
 
+# Split the data into train/test 
 
 def split_my_data(data):
     df.fillna(np.nan, inplace=True)
     df = df.dropna()
     from sklearn.model_selection import train_test_split
     return train_test_split(data, train_size = 0.8, random_state = 123)
+
 
 def impute(train, test, my_strategy, column_list):
     from sklearn.impute import SimpleImputer
