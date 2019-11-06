@@ -40,15 +40,16 @@ def fill_zero(df, cols):
     df.fillna(value=0, inplace=True)
     return df
 
-# Removes outliers.
 
-def remove_outliers_iqr(df, columns):
-    for col in columns:
-        q75, q25 = np.percentile(df[col], [75,25])
-        ub = 3*stats.iqr(df[col]) + q75
-        lb = q25 - 3*stats.iqr(df[col])
-        df = df[df[col] <= ub]
-        df = df[df[col] >= lb]
+def remove_outliers_iqr(df, col):
+
+    q1, q3 = df[col].quantile([.25, .75])
+    iqr = q3 - q1
+    ub = q3 + 3 * iqr
+    lb = q1 - 3 * iqr
+
+    df = df[df[col] <= ub]
+    df = df[df[col] >= lb]
     return df
 
 # Split the data into train/test 
