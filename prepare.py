@@ -51,3 +51,30 @@ def remove_outliers_iqr(df, columns):
         df = df[df[col] >= lb]
     return df
 
+
+def split_my_data(data):
+    df.fillna(np.nan, inplace=True)
+    df = df.dropna()
+    from sklearn.model_selection import train_test_split
+    return train_test_split(data, train_size = 0.8, random_state = 123)
+
+def impute(train, test, my_strategy, column_list):
+    from sklearn.impute import SimpleImputer
+    imputer = SimpleImputer(strategy=my_strategy)
+    train[column_list] = imputer.fit_transform(train[column_list])
+    test[column_list] = imputer.transform(test[column_list])
+    return train, test
+
+# change col_name into take a col_list 
+def encode(train, test, col_list):
+    from sklearn.preprocessing import LabelEncoder
+    
+    for col_name in enumerate(col_list):
+    # Integer Encoding
+        int_encoder = LabelEncoder()
+        train[col_name] = int_encoder.fit_transform(train[col_name])
+        test[col_name] = int_encoder.transform(test[col_name])
+    
+    return train, test
+
+
