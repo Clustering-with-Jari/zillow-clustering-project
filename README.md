@@ -54,18 +54,12 @@ Personal env.py file containing db access info: host, user, & password
 
 **Method**
 
-Pull all .py files
+- Pull all .py files
 
-acquire.py
+> acquire.py, prep.py, split_scale.py, model.py
 
-prep.py
+- Add your env.py file
 
-split_scale.py
-
-model.py
-
-Add your env.py file
-
-Run through telco_pipeline.ipynb
+- Run through Zillow.ipynb
 
 Random states are set as 123 in the notebook
