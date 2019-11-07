@@ -3,7 +3,6 @@ import scipy.stats as stats
 import numpy as np
 
 # Selects single unit properties out of data.
-
 def zillow_single_unit(df):
     criteria_1 = df.propertylandusedesc == 'Single Family Residential'
     #criteria_2=df.unitcnt==1 | df.unitcnt.isna()
@@ -13,13 +12,11 @@ def zillow_single_unit(df):
     return df
 
 # Remove unwanted columns.
-
 def remove_columns(df, cols_to_remove):  
     df = df.drop(columns=cols_to_remove)
     return df
 
 # Remove rows and columns based on a minimum percentage for each row and column.
-
 def handle_missing_values(df, prop_required_column = .5, prop_required_row = .75):
     threshold = int(round(prop_required_column*len(df.index),0))
     df.dropna(axis=1, thresh=threshold, inplace=True)
@@ -28,20 +25,18 @@ def handle_missing_values(df, prop_required_column = .5, prop_required_row = .75
     return df
 
 # Combining both the previous functions together.
-
 def data_prep(df, cols_to_remove=[], prop_required_column=.5, prop_required_row=.75):
     df = remove_columns(df, cols_to_remove)
     df = handle_missing_values(df, prop_required_column, prop_required_row)
     return df
 
 # Fills missing values with 0's where it makes sense.
-
 def fill_zero(df, cols):
     df.fillna(value=0, inplace=True)
     return df
 
-
-def remove_outliers_iqr(df, col):
+# take out?
+def remove_outliers_iqr_old(df, col):
 
     q1, q3 = df[col].quantile([.25, .75])
     iqr = q3 - q1
@@ -53,14 +48,13 @@ def remove_outliers_iqr(df, col):
     return df
 
 # Split the data into train/test 
-
 def split_my_data(data):
     data.fillna(np.nan, inplace=True)
     data = data.dropna()
     from sklearn.model_selection import train_test_split
     return train_test_split(data, train_size = 0.8, random_state = 123)
 
-
+# 
 def impute(train, test, my_strategy, column_list):
     from sklearn.impute import SimpleImputer
     imputer = SimpleImputer(strategy=my_strategy)
@@ -80,4 +74,16 @@ def encode(train, test, col_list):
     
     return train, test
 
+# remove outliers 
+def remove_outliers_iqr(df, columns):
+    for col in columns:
+        #q75, q25 = np.percentile(df[col], [75,25])
 
+        q1, q3 = col.quantile([.25, .75])
+        iqr = q3 - q1
+        ub = q3 + k * iqr
+        lb = q1 - k * iqr
+        
+        df = df[df[col] <= ub]
+        df = df[df[col] >= lb]
+    return df
