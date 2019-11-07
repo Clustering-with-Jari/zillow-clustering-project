@@ -17,8 +17,15 @@ def remove_columns(df, cols_to_remove):
     return df
 
 # Remove rows and columns based on a minimum percentage for each row and column.
+def handle_missing_values(df, prop_required_column = .5, prop_required_row = .75):
+    threshold = int(round(prop_required_column*len(df.index),0))
+    df.dropna(axis=1, thresh=threshold, inplace=True)
+    threshold = int(round(prop_required_row*len(df.columns),0))
+    df.dropna(axis=0, thresh=threshold, inplace=True)
+    return df
 
-def handle_missing_values(df, prop_required_column = .01, prop_required_row = .40):
+
+def handle_missing_values_low_pct(df, prop_required_column = .01, prop_required_row = .40):
     threshold = int(round(prop_required_column*len(df.index),0))
     df.dropna(axis=1, thresh=threshold, inplace=True)
     threshold = int(round(prop_required_row*len(df.columns),0))
