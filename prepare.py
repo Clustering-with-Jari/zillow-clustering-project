@@ -35,18 +35,6 @@ def fill_zero(df, cols):
     df.fillna(value=0, inplace=True)
     return df
 
-# take out?
-def remove_outliers_iqr_old(df, col):
-
-    q1, q3 = df[col].quantile([.25, .75])
-    iqr = q3 - q1
-    ub = q3 + 3 * iqr
-    lb = q1 - 3 * iqr
-
-    df = df[df[col] <= ub]
-    df = df[df[col] >= lb]
-    return df
-
 # Split the data into train/test 
 def split_my_data(data):
     data.fillna(np.nan, inplace=True)
@@ -75,15 +63,17 @@ def encode(train, test, col_list):
     return train, test
 
 # remove outliers 
-def remove_outliers_iqr(df, columns):
-    for col in columns:
+def remove_outliers_iqr(df, col):
+    #for col in columns:
         #q75, q25 = np.percentile(df[col], [75,25])
 
-        q1, q3 = col.quantile([.25, .75])
-        iqr = q3 - q1
-        ub = q3 + k * iqr
-        lb = q1 - k * iqr
-        
-        df = df[df[col] <= ub]
-        df = df[df[col] >= lb]
+    q1, q3 = df[col].quantile([.25, .75])
+    iqr = q3 - q1
+    ub = q3 + 3 * iqr
+    lb = q1 - 3 * iqr
+
+    df = df[df[col] <= ub]
+    df = df[df[col] >= lb]
     return df
+
+
