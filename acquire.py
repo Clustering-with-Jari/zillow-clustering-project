@@ -124,5 +124,13 @@ def get_zillow_data():
     '''
     return pd.read_sql(query, get_db_url('zillow'))
 
+def wrangle_zillow():
+
+    df = pd.read_sql(query, get_db_url('zillow'))
+    # remove unit counts of two and three
+    df = df [(df.unitcnt != 2) | (df.unitcnt != 3)]
+    
+    return df
+
 
 
