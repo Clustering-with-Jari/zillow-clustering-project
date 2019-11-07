@@ -1,20 +1,24 @@
 **Clustering Project**
 
-How do we better estimate property value with less error?
+How to better estimate property value with less error?
 
 (predict log error of Zestimate)
 
 This project was built using python
 
 **Goal**
-Improve our original estimate of the log error by using clustering methodologies.
 
+1. Utilize machine learning to improve the housing value estimation (Zestimate)/ reduce logerror.
+
+2. Build machine learning models to predict logerror
+
+3. Identify the key factor(s) causing the difference(s) between logerror and housing value.
 
 **Deliverables**
 
-Report in a jupyter notebook
+- Report (in jupyter notebook)
 
-Clustering algorithm used to/ as:
+- Clustering algorithm used to/ as:
 
 > a tool to explore features
 >
@@ -22,7 +26,7 @@ Clustering algorithm used to/ as:
 >
 > subset the target variable - log error
 
-Report should contain:
+- Report contain:
 
 data dictionary
 
@@ -36,9 +40,9 @@ analyses/ takeaway
 
 key driver to log error
 
-Oral presentation of google slides
+- Oral presentation of google slides
 
-Multiple .py files with transformations to run model
+Multiple .py files to run model and reproduce the report
 
 **Material**
 
