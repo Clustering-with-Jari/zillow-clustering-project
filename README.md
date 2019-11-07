@@ -1,10 +1,4 @@
-**Clustering Project**
-
-How to better estimate property value with less error?
-
-(predict log error of Zestimate)
-
-This project was built using python
+**Clustering Project: How to better estimate property value with less error? (predict log error of Zestimate)**
 
 **Goal**
 
