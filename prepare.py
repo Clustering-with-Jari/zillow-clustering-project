@@ -17,6 +17,8 @@ def remove_columns(df, cols_to_remove):
     return df
 
 # Remove rows and columns based on a minimum percentage for each row and column.
+# len(df.index) = row_num
+# round to zero decimal designated missing row ratio > turn into int
 def handle_missing_values(df, prop_required_column = .5, prop_required_row = .75):
     threshold = int(round(prop_required_column*len(df.index),0))
     df.dropna(axis=1, thresh=threshold, inplace=True)
@@ -25,7 +27,7 @@ def handle_missing_values(df, prop_required_column = .5, prop_required_row = .75
     return df
 
 
-def handle_missing_values_low_pct(df, prop_required_column = .01, prop_required_row = .40):
+def handle_missing_values_high_tolerance(df, prop_required_column, prop_required_row):
     threshold = int(round(prop_required_column*len(df.index),0))
     df.dropna(axis=1, thresh=threshold, inplace=True)
     threshold = int(round(prop_required_row*len(df.columns),0))
@@ -70,18 +72,17 @@ def encode(train, test, col_list):
     
     return train, test
 
-# remove outliers 
-def remove_outliers_iqr(df, col):
-    #for col in columns:
-        #q75, q25 = np.percentile(df[col], [75,25])
 
-    q1, q3 = df[col].quantile([.25, .75])
-    iqr = q3 - q1
-    ub = q3 + 3 * iqr
-    lb = q1 - 3 * iqr
+def remove_outliers_iqr(df, col_out):
+    for col in enumerate(col_out):
+        col = str(col[1])
+        
+        q1, q3 = df[col].quantile([.25, .75])
+        iqr = q3 - q1
+        ub = q3 + 3 * iqr
+        lb = q1 - 3 * iqr
 
-    df = df[df[col] <= ub]
-    df = df[df[col] >= lb]
+        df = df[df[col] <= ub]
+        df = df[df[col] >= lb]
     return df
-
 
