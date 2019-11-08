@@ -1,13 +1,26 @@
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
-# This function takes in a dataframe and returns a new two column dataframe. First column returns number of nulls in each row and second column returns percentage of rows missing.
+# This function takes in a dataframe and returns a new two column dataframe. 
+# First column returns number of nulls in each row and 
+# second column returns percentage of rows missing.
 
 def nulls_by_col(df):
     num_missing = df.isnull().sum()
     rows = df.shape[0]
     pct_missing = num_missing/rows
-    cols_missing = pd.DataFrame({'num_rows_missing': num_missing, 'pct_rows_missing': pct_missing})
+    cols_missing = pd.DataFrame({'num_rows_missing': num_missing, 'pct_rows_missing': pct_missing}).sort_values("pct_rows_missing", ascending=False)
+
+
+    plt.figure(figsize=(20,40))
+    sns.set(style="whitegrid")
+    sns.set_color_codes("muted")
+    sns.barplot(x='pct_rows_missing', y= cols_missing.index, data=cols_missing,
+            label="Percentage of Missing Value in Each Row", color="b")
+
     return cols_missing
 
 
