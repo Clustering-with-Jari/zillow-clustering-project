@@ -44,15 +44,26 @@ def nulls_by_row(df):
 
 # This function takes in a dataframe and if the dtype of feature is an object, it will return its value counts and if the dtype is numeric, it will bins of the number.
 
+# def df_value_counts(df):
+#     counts = pd.Series([])
+#     for i, col in enumerate(df.columns.values):
+#         if df[col].dtype == 'object':
+#             col_count = df[col].value_counts()
+#         else:
+#             col_count = df[col].value_counts(bins=10, sort=False)
+#         counts = counts.append(col_count)
+#     return counts
 def df_value_counts(df):
-    counts = pd.Series([])
-    for i, col in enumerate(df.columns.values):
+    for col in df.columns:
+        print(f'{col}:')
         if df[col].dtype == 'object':
             col_count = df[col].value_counts()
         else:
-            col_count = df[col].value_counts(bins=10, sort=False)
-        counts = counts.append(col_count)
-    return counts
+            if df[col].nunique() >= 35:
+                col_count = df[col].value_counts(bins=10, sort=False)
+            else:
+                col_count = df[col].value_counts()
+        print(col_count)
 
 # This function will take in a dataframe and return all of the summary information.
 
@@ -62,9 +73,5 @@ def df_summary(df):
     df.info()
     print('--- Descriptions')
     print(df.describe(include='all'))
-    print('--- Nulls By Column')
-    print(nulls_by_col(df))
-    print('--- Nulls By Row')
-    print(nulls_by_row(df))
     print('--- Value Counts')
     print(df_value_counts(df))
