@@ -12,31 +12,31 @@
 
 - Report (in jupyter notebook)
 
-- Clustering algorithm used to/ as:
+- Clustering algorithm used to / as:
 
 > a tool to explore features
 >
-> select/ engineer feature
+> select / engineer feature
 >
 > subset the target variable - log error
 
-- Report contain:
+- Report contains:
 
-data dictionary
+  - data dictionary
 
-stat 
+  - stats 
 
-visualization 
+  - visualizations 
 
-model/ model evaluation
+  - models/ model evaluations
 
-analyses/ takeaway
+  - analyses/ takeaway
 
-key driver to log error
+  - analysis on key drivers for log error
 
-- Oral presentation of google slides
+- Oral presentation of jupyter notebook
 
-Multiple .py files to run model and reproduce the report
+  - Multiple .py files to run model and reproduce the report
 
 **Material**
 
@@ -48,12 +48,12 @@ Personal env.py file containing db access info: host, user, & password
 
 **Method**
 
-- Pull all .py files
+Pull all .py files
 
-> acquire.py, prep.py, split_scale.py, model.py
+  > acquire.py, prep.py, split_scale.py, model.py
 
-- Add your env.py file
+Add your env.py file
 
-- Run through Zillow.ipynb
+Run through Zillow.ipynb
 
-Random states are set as 123 in the notebook
+*Random states are set as 123 in the notebook*
