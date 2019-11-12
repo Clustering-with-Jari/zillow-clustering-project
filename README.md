@@ -48,12 +48,12 @@ Personal env.py file containing db access info: host, user, & password
 
 **Method**
 
-Pull all .py files
+- Pull all .py files
 
   > acquire.py, prep.py, split_scale.py, model.py
 
-Add your env.py file
+- Add your env.py file
 
-Run through Zillow.ipynb
+- Run through Zillow.ipynb
 
 *Random states are set as 123 in the notebook*
